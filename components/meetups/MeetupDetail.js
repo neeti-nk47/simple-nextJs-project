@@ -1,18 +1,14 @@
-import Card from "../ui/Card";
-import classes from "./MeetupItem.module.css";
+import classes from "./MeetupDetail.module.css";
 
-const MeetupDetail = (props) => {
+function MeetupDetail(props) {
   return (
-    <Card>
-      <div className={classes.image}>
-        <img src={props.image} alt={props.title} />
-      </div>
-      <div className={classes.content}>
-        <h3>{props.title}</h3>
-        <address>{props.address}</address>
-      </div>
-    </Card>
+    <section className={classes.detail}>
+      <img src={props.image} alt={props.title} />
+      <h1>{props.title}</h1>
+      <address>{props.address}</address>
+      <p>{props.description}</p>
+    </section>
   );
-};
+}
 
 export default MeetupDetail;

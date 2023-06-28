@@ -1,24 +1,36 @@
 import MeetupList from "../components/meetups/MeetupList";
 
-const dummy = [
+const DUMMY_MEETUPS = [
   {
-    id: "1",
-    title: "1st",
+    id: "m1",
+    title: "A First Meetup",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
-    address: "Paris",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+    address: "Some address 5, 12345 Some City",
+    description: "This is a first meetup!",
   },
   {
     id: "m2",
-    title: "2s meetupt",
+    title: "A Second Meetup",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
-    address: "Pari ke ghar",
+    address: "Some address 10, 12345 Some City",
+    description: "This is a second meetup!",
   },
 ];
 
-function Homepage() {
-  return <MeetupList meetups={dummy} />;
+function HomePage(props) {
+  return <MeetupList meetups={props.meetups} />;
 }
 
-export default Homepage;
+export async function getStaticProps() {
+  // fetch data from an API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+    revalidate: 1,
+  };
+}
+
+export default HomePage;

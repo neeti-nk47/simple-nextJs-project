@@ -1,13 +1,58 @@
 import MeetupDetail from "../components/meetups/MeetupDetail";
 
-function MeetupDetailsPage() {
+function MeetupDetails() {
   return (
     <MeetupDetail
-      title="1st"
-      image="https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg"
-      address="Paris"
+      image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg"
+      title="First Meetup"
+      address="Some Street 5, Some City"
+      description="This is a first meetup"
     />
   );
 }
 
-export default MeetupDetailsPage;
+export async function getStaticPaths() {
+  return {
+    fallback: false,
+    paths: [
+      {
+        params: {
+          meetupId: "m1",
+        },
+      },
+      {
+        params: {
+          meetupId: "m2",
+        },
+      },
+      {
+        params: {
+          meetupId: "m3",
+        },
+      },
+    ],
+  };
+}
+
+export async function getStaticProps(context) {
+  // fetch data for a single meetup
+
+  const meetupId = context.params.meetupId;
+
+  console.log(meetupId);
+
+  return {
+    props: {
+      meetupData: {
+        image:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+        id: meetupId,
+        title: "First Meetup",
+        address: "Some Street 5, Some City",
+        description: "This is a first meetup",
+      },
+    },
+  };
+}
+
+export default MeetupDetails;
